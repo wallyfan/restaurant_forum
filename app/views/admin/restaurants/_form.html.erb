@@ -1,0 +1,39 @@
+<% if @restaurant.errors.any? %>
+  <h2>Oops!!資訊輸入錯誤!!</h2>
+  <ul>
+    <% @restaurant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: [:admin, @restaurant]) do |f| %>
+
+<div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
+  <%= f.label :name, "餐廳名稱" %>
+  <%= f.text_field :name %>
+
+  <% if f.object.errors[:name] %>
+  <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
+  <% end %>
+</div>
+<div class="form-group" > 
+  <%= f.label :tel, "聯繫電話" %>
+  <%= f.text_field :tel %>
+</div>
+<div>
+  <%= f.label :address, "餐廳地址" %>
+  <%= f.text_field :address %>
+</div>
+<div class="form-group" > 
+  <%= f.label :opening_hours, "營業時間" %>
+  <%= f.text_field :opening_hours %>
+</div>
+<div class="form-group" > 
+  <%= f.label :description, "餐廳簡介" %>
+  <%= f.text_area :description %>
+</div>
+  <%= f.submit %>
+<% end %>
+<br>
+<%= link_to '回餐廳目錄', admin_restaurants_path %>
