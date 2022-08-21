@@ -1,9 +1,11 @@
 <h1><%= @restaurant.name %></h1>
-
+<%= image_tag @restaurant.image.url, width: '600px' if @restaurant.image? %>
+<br>
 營業時間:<%= @restaurant.opening_hours %><br>
 聯絡電話: <%= @restaurant.tel %><br>
 餐廳地址: <%= @restaurant.address %><br>
 餐廳簡介:<%= @restaurant.description %><br>
+
 
 <br>
 
