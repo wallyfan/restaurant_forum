@@ -8,6 +8,14 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script>
+      function confirmDestroy(message) {
+      if (!confirm(message)) {
+      return false;
+       }
+      }
+    </script> 
+
   </head>
 
   <body>
@@ -23,7 +31,7 @@
  <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
- 
+
     
     <%= yield %>
   </body>

@@ -6,7 +6,7 @@
     <%= restaurant.name %>
     <%= link_to 'Show', admin_restaurant_path(restaurant) %>
     <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
-    <%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data: {confirm:"Are you sure?"} %>
+    <%= button_to "Delete", admin_restaurant_path(restaurant), method: :delete, onclick: "return confirmDestroy('確定要刪除此筆餐廳資訊嗎？')" %>
   </li>
   <% end %>
 </ul>
