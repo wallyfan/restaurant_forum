@@ -1,45 +1,61 @@
-<% if @restaurant.errors.any? %>
-  <h2>Oops!!資訊輸入錯誤!!</h2>
-  <ul>
-    <% @restaurant.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<div class="container">
+  <div class="row">
+
+    <% if @restaurant.errors.any? %>
+      <h4>Oops!!資訊輸入錯誤!!</h4>
+      <ul>
+        <% @restaurant.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      <hr>
     <% end %>
-  </ul>
-<% end %>
 
-<%= form_with(model: [:admin, @restaurant]) do |f| %>
+    <%= form_with(model: [:admin, @restaurant]) do |f| %>
 
-<div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
-  <%= f.label :name, "餐廳名稱" %>
-  <%= f.text_field :name %>
+      <div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
+        <%= f.label :name, "餐廳名稱" %>
+        <%= f.text_field :name, class: "form-control" %>
 
-  <% if f.object.errors[:name] %>
-  <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
-  <% end %>
-</div>
-<div class="form-group" > 
-  <%= f.label :tel, "聯繫電話" %>
-  <%= f.text_field :tel %>
-</div>
-<div>
-  <%= f.label :address, "餐廳地址" %>
-  <%= f.text_field :address %>
-</div>
-<div class="form-group" > 
-  <%= f.label :opening_hours, "營業時間" %>
-  <%= f.text_field :opening_hours %>
-</div>
-<div class="form-group" > 
-  <%= f.label :description, "餐廳簡介" %>
-  <%= f.text_area :description %>
-</div>
-<div class="form-group" > 
-  <%= f.label :image, "Photo" %>
-  <%= image_tag @restaurant.image.url, width: '300px' if @restaurant.image? %>
-  <%= f.file_field :image %>
-  </div>
-  <%= f.submit %>
-<% end %>
+        <% if f.object.errors[:name] %>
+        <span class="help-block">此欄<%= safe_join(f.object.errors[:name], "、") %></span>
+        <% end %>
+      </div>
+
+      <div class="form-group" > 
+        <%= f.label :tel, "聯繫電話" %>
+        <%= f.text_field :tel, class: "form-control" %>
+      </div>
+
+      <div>
+        <%= f.label :address, "餐廳地址" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="form-group" > 
+        <%= f.label :opening_hours, "營業時間" %>
+        <%= f.text_field :opening_hours, class: "form-control" %>
+      </div>
+
+      <div class="form-group" > 
+        <%= f.label :description, "餐廳簡介" %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="form-group" > 
+        <%= f.label :image, "餐廳相關照片" %>
+        <%= image_tag @restaurant.image.url, width: '300px' if @restaurant.image? %>
+        <%= f.file_field :image %>
+      </div>
+
+       <div class="form-group">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+    <% end %>
 
 <br>
-<%= link_to '回餐廳目錄', admin_restaurants_path %>
+
+<%= link_to "回上層目錄", :back %>
+
+  </div>
+</div>
