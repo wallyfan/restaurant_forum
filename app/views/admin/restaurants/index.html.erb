@@ -13,20 +13,25 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>#</th>
+            <th>編號</th>
+            <th>餐廳名稱</th>
+            <th>編輯</th>
+            <th>刪除</th>
           </tr>
         </thead>
         <tbody>
           <% @restaurants.each do |restaurant| %>
           <tr>
-            <th scope="row"><%= restaurant.id %></th>
-            <td><%= restaurant.name %></td>
-            <td>
-              <%= link_to 'Show', admin_restaurant_path(restaurant) %>
-              <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
-              <%= button_to "Delete", admin_restaurant_path(restaurant), method: :delete, onclick: "return confirmDestroy('確定要刪除此筆餐廳資訊嗎？')" %>
+            <th width="10%" scope="row"><%= restaurant.id %></th>
+            <td><%= link_to admin_restaurant_path(restaurant) do %>  <%# show改的,直接點選餐廳名稱後連結到餐廳頁面%>
+              <%= restaurant.name %>
+            <% end %>
+            </td>
+            <td width="10%">
+              <%= button_to 'Edit', edit_admin_restaurant_path(restaurant), class: "btn btn-primary" %>
+            </td>
+            <td width="10%">
+              <%= button_to "Delete", admin_restaurant_path(restaurant), class: "btn btn-danger", method: :delete, onclick: "return confirmDestroy('確定要刪除此筆餐廳資訊嗎？')" %>
             </td>
           </tr>
           <% end %>
