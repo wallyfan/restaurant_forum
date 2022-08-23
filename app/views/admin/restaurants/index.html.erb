@@ -28,7 +28,7 @@
             <% end %>
             </td>
             <td width="10%">
-              <%= button_to 'Edit', edit_admin_restaurant_path(restaurant), class: "btn btn-primary" %>
+              <%= button_to 'Edit', edit_admin_restaurant_path(restaurant), class: "btn btn-primary", method: :get %>
             </td>
             <td width="10%">
               <%= button_to "Delete", admin_restaurant_path(restaurant), class: "btn btn-danger", method: :delete, onclick: "return confirmDestroy('確定要刪除此筆餐廳資訊嗎？')" %>

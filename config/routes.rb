@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "restaurants#index"
   
   get "/:id", to: "restaurants#show"
+  
 
   namespace :admin do
     resources :restaurants
