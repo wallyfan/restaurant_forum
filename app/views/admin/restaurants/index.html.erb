@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th>編號</th>
+            <th>餐廳分類</th>
             <th>餐廳名稱</th>
             <th>編輯</th>
             <th>刪除</th>
@@ -22,7 +23,8 @@
         <tbody>
           <% @restaurants.each do |restaurant| %>
           <tr>
-            <th width="10%" scope="row"><%= restaurant.id %></th>
+            <th width="5%" scope="row"><%= restaurant.id %></th>
+            <td width="15%">[<%= restaurant.category.name %>]</td>
             <td><%= link_to admin_restaurant_path(restaurant) do %>  <%# show改的,直接點選餐廳名稱後連結到餐廳頁面%>
               <%= restaurant.name %>
             <% end %>
