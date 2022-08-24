@@ -18,14 +18,19 @@
         <%= f.text_field :name, class: "form-control" %>
 
         <% if f.object.errors[:name] %>
-        <span class="help-block">此欄<%= safe_join(f.object.errors[:name], "、") %></span>
+        <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
         <% end %>
+      </div>
+
+      <div class="form-group" > 
+        <%= f.label :category_id, "餐廳分類" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
       </div>
 
       <div class="form-group" > 
         <%= f.label :tel, "聯繫電話" %>
         <%= f.text_field :tel, class: "form-control" %>
-      </div>
+      </div> 
 
       <div>
         <%= f.label :address, "餐廳地址" %>
