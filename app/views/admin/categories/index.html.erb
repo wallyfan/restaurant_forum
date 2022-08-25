@@ -11,7 +11,11 @@
     <div class="form-group">
       <%= f.text_field :name, placeholder: "Category Name",  class: "form-control" %>
     </div>
-    <%= f.submit class: "btn btn-primary" %>
+      <% if params[:id] %>
+        <%= f.submit "變更分類名稱", class: "btn btn-primary" %>
+      <% else %>
+        <%= f.submit "新增分類", class: "btn btn-primary" %>
+      <% end %>
   <% end %>
   <% if @category.errors.any? %>
     Categotry <%= @category.errors.full_messages.to_sentence %>
@@ -33,7 +37,12 @@
           <% @categories.each do |category| %>
           <tr>
             <th width="5%" scope="row"><%= category.id %></th>
-            <td width="40%"><%= category.name %></td>
+
+            <td width="40%"><%= category.name %>&nbsp;&nbsp;              
+            <%= link_to admin_categories_path(id: category.id) do %>
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+            <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>
