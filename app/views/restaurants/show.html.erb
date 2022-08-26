@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <h1><%= @restaurant.name %></h1>
+      <p>[<%= @restaurant.category.name %>]</p>
     </div>
-
     <div class="col-md-4">
       <%= image_tag @restaurant.image.url, width: '600px', class: "img-responsive center-block" if @restaurant.image? %>
       <br>
@@ -18,31 +18,30 @@
     <div class="col-md-8">
       <%= simple_format @restaurant.description %>
     </div>
-    <div class="clearfix">
-
-    </div>
+    <div class="clearfix"></div>
+    <hr>
   </div>
-      <!-- 顯示與餐廳相關的評論 -->
+</div>
+<div class="container">
+  <div class="row">
+    <!-- 顯示與餐廳相關的評論 -->
     <% @restaurant.comments.each do |comment| %>
     <div>
       <h4><%= comment.user.email.split('@').first %></h4>
       <p><%= simple_format comment.content %></p>
       <p class="text-muted">
-        <em><%= time_ago_in_words(comment.created_at) %> </em>
+        <em><%= time_ago_in_words(comment.created_at) %> ago -</em>
+        <% if current_user.admin? %>
+           <%= button_to restaurant_comment_path(@restaurant, comment),class: "btn btn-link", method: :delete, onclick: "return confirmDestroy('確定要刪除？')" do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true">刪除此評論
+            <% end %>
+        <% end %>
       </p>
     </div>
     <hr>
     <% end %>
-  <div>
-      <hr>
-    <%= link_to '回餐廳目錄', :back %>
-      <hr>
-  </div> 
-</div>
-
-<div class="container">
-  <div class="row">
-   <%= form_for [@restaurant, @comment] do |f| %>
+    <!-- 新增評論的表單輸入框 -->
+    <%= form_for [@restaurant, @comment] do |f| %>
     <div class="form-group">
       <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
     </div>
@@ -50,6 +49,6 @@
       <%= f.submit class: "btn btn-primary" %>
       <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
     </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
