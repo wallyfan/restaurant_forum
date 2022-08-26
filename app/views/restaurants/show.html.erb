@@ -22,6 +22,17 @@
 
     </div>
   </div>
+      <!-- 顯示與餐廳相關的評論 -->
+    <% @restaurant.comments.each do |comment| %>
+    <div>
+      <h4><%= comment.user.email.split('@').first %></h4>
+      <p><%= simple_format comment.content %></p>
+      <p class="text-muted">
+        <em><%= time_ago_in_words(comment.created_at) %> </em>
+      </p>
+    </div>
+    <hr>
+    <% end %>
   <div>
       <hr>
     <%= link_to '回餐廳目錄', :back %>
