@@ -1,11 +1,17 @@
-<h2>會員資料編輯Edit <%= resource_name.to_s.humanize %></h2>
+<h2>會員帳密編輯Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <!-- 增加 name 輸入框之後，需要讓 name 屬性通過 Strong Parameter 驗證，在 Devise 文件裡有說明：https://github.com/plataformatec/devise#strong-parameters -->
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :name, "暱稱" %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "電子郵件" %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,7 +19,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, "登入密碼" %> <i>(如果不需變更請勿輸入)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -22,22 +28,22 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "確認密碼" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, "原密碼" %> <i>(需要輸入原有密碼才能變更為新密碼)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "更新帳密", class: "btn btn-success" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>註銷此帳號</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "註銷帳號", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: "btn btn-danger" %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "返回", :back %>

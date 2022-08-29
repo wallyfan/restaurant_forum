@@ -5,13 +5,19 @@
 
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <!-- 增加 name 輸入框之後，需要讓 name 屬性通過 Strong Parameter 驗證，在 Devise 文件裡有說明：https://github.com/plataformatec/devise#strong-parameters -->
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :name, "暱稱"%><br />
+    <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :email, "電子郵件"  %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "登入密碼" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -19,13 +25,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "確認密碼" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "進行註冊" %>
   </div>
 <% end %>
-
+<br>
 <%= render "devise/shared/links" %>
