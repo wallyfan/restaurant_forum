@@ -1,7 +1,8 @@
 <div class="container">
+  <%= link_to "回上頁", url_for(request.env["HTTP_REFERER"] || root_path) %>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-
+      
       <!-- page-header 裡面顯示個人檔案資料 -->
       <div class="page-header">
 

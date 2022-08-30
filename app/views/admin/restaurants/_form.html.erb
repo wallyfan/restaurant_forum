@@ -59,8 +59,7 @@
     <% end %>
 
 <br>
-
-<%= link_to "回上層目錄", :back %>
+<%= link_to "回上層", url_for(request.env["HTTP_REFERER"] || root_path) %>
 
   </div>
 </div>

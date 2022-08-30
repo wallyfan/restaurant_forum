@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <%= link_to "回上頁", :back %>
+    <%= link_to "回上頁", url_for(request.env["HTTP_REFERER"] || root_path) %>
+    
     <div class="col-md-12">
       <h1><%= @restaurant.name %></h1>
       <p>[<%= @restaurant.category.name %>]</p>
@@ -19,9 +20,8 @@
     <div class="col-md-8">
       <%= simple_format @restaurant.description %>
       <hr>
-      <%= link_to 'Dashboard', dashboard_restaurant_path(@restaurant), class: "btn btn-primary" %> 
-      <%= button_to 'Favorite', favorite_restaurant_path(@restaurant), method: :post, class: "btn btn-primary" %>
-      <%= button_to 'Unfavorite', unfavorite_restaurant_path(@restaurant), method: :post, class: "btn btn-info" %>
+      <%= link_to 'Dashboard', dashboard_restaurant_path(@restaurant), class: "btn btn-primary" %>
+      <%= render partial: "shared/favorite", locals: {restaurant: @restaurant} %>
     </div>
     <div class="clearfix"></div>
     <hr>

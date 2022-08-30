@@ -26,7 +26,7 @@
 </div>
 <div>
   <hr>
-  <%= link_to '回餐廳目錄', admin_restaurants_path %>
+  <%= link_to "回上層", url_for(request.env["HTTP_REFERER"] || root_path) %>
   <hr>
 </div>
 

@@ -1,0 +1,10 @@
+<% if restaurant.is_favorited?(current_user) %>
+  <%= button_to unfavorite_restaurant_path(restaurant),class: "btn btn-default", method: :post do %>
+    <span class="glyphicon glyphicon-star-empty" aria-hidden="true">取消收藏
+  <% end %>
+<% else %>
+  <%= button_to favorite_restaurant_path(restaurant),class: "btn btn-default", method: :post do %>
+    <span class="glyphicon glyphicon-star" aria-hidden="true">收藏
+  <% end %>
+<% end %>
+
