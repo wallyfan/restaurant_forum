@@ -26,8 +26,27 @@
 
       <br>
 
-
-
     </div>
   </div>
+
+  <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>共有 <%= @commented_restaurants.count %></strong> 家已評論餐廳</h3>
+    </div>
+    <div class="panel-body panel-body-noline">
+    <% @commented_restaurants.each do |restaurant| %>
+      <%= link_to restaurant_path(restaurant) do %>
+      <div class="my-restaurant">
+        <div>
+         <%= image_tag restaurant.image.url, class: "img-responsive img-rounded" if restaurant.image? %>
+         <%= image_tag "https://via.placeholder.com/200", class: "img-responsive img-rounded"  unless restaurant.image? %> 
+        </div>
+        <h5><%= restaurant.name %></h5>
+      </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
 </div>
